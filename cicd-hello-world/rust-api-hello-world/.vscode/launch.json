@@ -1,0 +1,19 @@
+{
+  "version": "0.2.0",
+  "configurations": [{
+    "type": "lldb",
+    "request": "launch",
+    "name": "Debug hello-world",
+    "cargo": {
+      "filter": {
+        "kind": "bin"
+      },
+      "args": [
+          "build",
+          "--bin=hello-world"
+      ]
+    },
+    "args": [],
+    "cwd": "${workspaceFolder}"
+  }]
+}
