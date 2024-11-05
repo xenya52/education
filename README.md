@@ -69,7 +69,7 @@ Important principels
 3. testing = (Rust integr.) !
 4. release = github actions
 5. deploy = docker
-6. operate = azure container images
-7. monitor = azure app insights
+6. operate = azure container images / ansible / Terraform / Kubernetes 
+7. monitor = azure app insights / graphana (don't work without prometeus)
 
 "it's important to make it wrong, for the moment"
