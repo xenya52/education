@@ -62,7 +62,7 @@ Important principels
 
 ## Proceed CICD pipeline
 
-### 0 Planning steps
+### 0 Planning steps / notes
 
 1. code = Rust √
 2. build = cargo √
@@ -73,3 +73,16 @@ Important principels
 7. monitor = azure app insights / graphana (don't work without prometeus)
 
 "it's important to make it wrong, for the moment"
+
+### 1 First CICD Pipeline "cicd-hello-world"
+
+#### 1. Pull a rust project from github
+
+First step was to use on the [Project](https://github.com/marcker/rust-api-hello-world).
+
+This worked without any problems and I removed the .github file from the pulled reposetory directory.
+
+#### 2. Create,adjust a docerfile
+#### 3. Check for the Start
+#### 4. Run Minikube
+#### 5. Connect docker application with my local minikube
