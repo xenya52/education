@@ -82,7 +82,16 @@ First step was to use on the [Project](https://github.com/marcker/rust-api-hello
 
 This worked without any problems and I removed the .github file from the pulled reposetory directory.
 
-#### 2. Create,adjust a docerfile
+#### 2. Create,adjust a dockerfile
+
+At the beginning I searched for a rust image that I can use to build my project
+This worked without any problems. 
+
+The next step was to use a server to run my restapi as webapp.
+
+I tried to use debian:bullseye but this is not what I wanted.
+
+
 #### 3. Check for the Start
 #### 4. Run Minikube
 #### 5. Connect docker application with my local minikube

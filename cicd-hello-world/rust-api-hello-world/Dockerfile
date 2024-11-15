@@ -12,7 +12,13 @@ EXPOSE 6767
 # Run the binary
 # CMD ["./target/release/hello-world"]
 
-FROM debian:bullseye-slim
-RUN apt-get update && apt-get install -y
-COPY --from=builder ./target/release/hello-world /usr/local/bin/myapp
-CMD ["hello-world"]
+# FROM debian:bullseye-slim
+# RUN apt-get update && apt-get install -y
+# COPY --from=builder ./target/release/hello-world /usr/local/bin/myapp
+# CMD ["hello-world"]
+
+# note: never use the :latest tag in a production site
+FROM caddy:latest
+
+COPY Caddyfile /etc/caddy/Caddyfile
+COPY site /srv
