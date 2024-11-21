@@ -33,9 +33,9 @@ def instance {
 1993 - CFE Engine
 2007 - Cloud Computing (AWS)
 2010 - Azure VM launch
-2013 - Docker release   
-2014 - Kubernetes release 
-2017 - Pulumi tool release 
+2013 - Docker release
+2014 - Kubernetes release
+2017 - Pulumi tool release
 2023 - Opentofu (Teraform but proper OpenSource licence) era
 
 DevOps (Like the CICD livesycle)
@@ -45,18 +45,18 @@ Dev -
 1. Planning
 2. Coding
 3. Building
-4. Testing 
+4. Testing
 
 \- Ops
 
-5. Release 
-6. Deploy 
-7. Operate 
-8. Monitor 
+5. Release
+6. Deploy
+7. Operate
+8. Monitor
 
 Important principels
 
-- Continuous -Integration, -Deployment, -Testing 
+- Continuous -Integration, -Deployment, -Testing
 - IaC overall
 - Supervision
 
@@ -69,7 +69,7 @@ Important principels
 3. testing = (Rust integr.) !
 4. release = github actions
 5. deploy = docker
-6. operate = azure container images / ansible / Terraform / Kubernetes 
+6. operate = azure container images / ansible / Terraform / Kubernetes
 7. monitor = azure app insights / graphana (don't work without prometeus)
 
 "it's important to make it wrong, for the moment"
@@ -82,15 +82,22 @@ First step was to use on the [Project](https://github.com/marcker/rust-api-hello
 
 This worked without any problems and I removed the .github file from the pulled reposetory directory.
 
-#### 2. Create,adjust a dockerfile
+#### 2. Create,adjust a dockerfile / setup jenkins
+
+##### 2.1 Adjust Dockerfile
 
 At the beginning I searched for a rust image that I can use to build my project
-This worked without any problems. 
+This worked without any problems.
 
 The next step was to use a server to run my restapi as webapp.
 
 I tried to use debian:bullseye but this is not what I wanted.
 
+##### 2.2 Setup jenkins
+
+Start the raspi
+
+Update system and install jenkins
 
 #### 3. Check for the Start
 #### 4. Run Minikube
