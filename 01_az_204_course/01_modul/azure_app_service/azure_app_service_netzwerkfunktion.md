@@ -1,1 +1,0 @@
-Standardmäßig sind Apps, die in App Service gehostet werden, direkt über das Internet zugänglich und können nur Endpunkte erreichen, die im Internet gehostet werden. Für viele Anwendungen müssen Sie jedoch den ein- und ausgehenden Netzwerkdatenverkehr kontrollieren.
