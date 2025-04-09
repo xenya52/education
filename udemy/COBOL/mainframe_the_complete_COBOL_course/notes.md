@@ -115,3 +115,43 @@ Are special literals that are used to represent specific values or concepts in C
 6. ALL
 7. NULL OR NULLS
 **Important: Don't use HIGH-VALUE or LOW-VALUE for numeric data types**
+
+
+## Data types (Picture clause), Levels...
+
+Data Types - Denoted by PICTURE (PIC) clause. Is used to define the format and characteristics of a data item. The PICTURE clause specifies the type of data, its length, and any special formatting requirements.
+
+### Numeric (denoted 9)
+- max length is 18
+- from 0 to 9
+
+**Sign data type (denoted S)**
+- Links a sign to a number. If its present, the number is a signed number. If its not the number is a unsigned one.
+
+**Plus Sign (denoted +)**
+- Used to print "+" as sign for positive numbers.
+
+**Minus Sign (denoted -)**
+- Used to print "-" as sign for negative numbers.
+
+**Implied Decimal point (denoted V)**
+- Does not hold any memory space. This is not used for displa but rather for computation.
+
+**Decimal point (denoted .)**
+- Used for display not for calculation any arithmetic operations.
+
+***Leading Zeros (denoted 0)**
+- Used to display leading zeros with blanks. It is used for display purposes only and does not affect the actual value of the data item.
+
+**Comma (denoted ,)**
+- To insert a comma into the data item at a particular position. It is used for display purposes only and does not affect the actual value of the data item.
+
+**Dollar symbol (denoted $)**
+- To insert a dollar sign at the first position. This is normally used for currency purposes.
+
+### Alphabet (denoted A)
+- max length is 255
+- from A to Z
+
+### Alphanumeric (denoted X)
+- Combination of numeric and alphabet
