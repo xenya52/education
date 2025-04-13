@@ -5,3 +5,4 @@
        PROCEDURE DIVISION.
        DISPLAY "Hello, world!".
        STOP RUN.
+       END PROGRAM hello.
