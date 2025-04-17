@@ -20,7 +20,7 @@
        01  WS-TRANSFER-AMOUNT     PIC 9(7)V99.
        01  WS-ACCOUNT-NUMBER      PIC X(10).
        01  WS-ACCOUNT-NAME        PIC X(30).
-       01  EOF-LOOP-SWITCH        PIC X.
+       01  EOF-LOOP-SWITCH        PIC X VALUE 'N'.
 
        PROCEDURE DIVISION.
        MAIN-PROCEDURE.
@@ -47,9 +47,27 @@
        TRANSFER-FUNDS.
          DISPLAY "Enter account number where the money should go to".
          ACCEPT WS-ACCOUNT-NUMBER.
-         DISPLAY "Enter the exact amount of money you want to sent".
+         DISPLAY "Enter the exact amount of money you want to send".
          ACCEPT WS-TRANSFER-AMOUNT.
          
+         OPEN I-O ACCOUNTS-FILE
+         SET EOF-LOOP-SWITCH TO 'N'
+
+         PERFORM UNTIL EOF-LOOP-SWITCH = 'Y'
+             READ ACCOUNTS-FILE INTO ACCOUNTS-RECORD
+               AT END
+                 SET EOF-LOOP-SWITCH TO 'Y'
+               NOT AT END
+                 IF WS-ACCOUNT-NUMBER = ACCOUNT-NUMBER
+                   ADD WS-TRANSFER-AMOUNT TO ACCOUNT-BALANCE
+                   REWRITE ACCOUNTS-RECORD
+                 END-IF
+             END-READ
+         END-PERFORM
+
+         CLOSE ACCOUNTS-FILE.
+         PERFORM MAIN-PROCEDURE.
+
        LOAD-ACCOUNTS.
          OPEN INPUT ACCOUNTS-FILE
          SET EOF-LOOP-SWITCH TO 'N'
@@ -59,12 +77,12 @@
              AT END
                SET EOF-LOOP-SWITCH TO 'Y'
              NOT AT END
-               DISPLAY ACCOUNTS-RECORD
+               DISPLAY ACCOUNT-NUMBER ACCOUNT-NAME ACCOUNT-BALANCE
            END-READ
          END-PERFORM
            
-           CLOSE ACCOUNTS-FILE.
-           PERFORM MAIN-PROCEDURE.
+         CLOSE ACCOUNTS-FILE.
+         PERFORM MAIN-PROCEDURE.
 
        SAVE-ACCOUNTS.
            DISPLAY "Enter account number to save: ".
@@ -76,7 +94,7 @@
            MOVE WS-ACCOUNT-NAME TO ACCOUNT-NAME.
            MOVE 0 TO ACCOUNT-BALANCE.
            
-           OPEN EXTEND ACCOUNTS-FILE.
+           OPEN OUTPUT ACCOUNTS-FILE.
            WRITE ACCOUNTS-RECORD.
            CLOSE ACCOUNTS-FILE.
            
