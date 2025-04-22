@@ -143,14 +143,72 @@ SHOW GRANTS FOR benutzer;
 
 ### TCL (Transaction Control Language)
 TCL-Befehle werden verwendet, um Transaktionen in der Datenbank zu steuern. Zu den wichtigsten TCL-Befehlen gehören:
-- `COMMIT`: Bestätigt alle Änderungen, die durch DML-Befehle vorgenommen wurden.
-- `ROLLBACK`: Macht alle Änderungen rückgängig, die seit dem letzten `COMMIT` vorgenommen wurden.
-- `SAVEPOINT`: Setzt einen Speicherpunkt innerhalb einer Transaktion, zu dem später zurückgekehrt werden kann.
-- `SET TRANSACTION`: Legt Eigenschaften für die aktuelle Transaktion fest, wie z.B. die Isolationsstufe.
 
-### Weitere SQL-Befehle
-Neben den oben genannten Kategorien gibt es noch weitere wichtige SQL-Befehle, die in keine der Kategorien passen:
-- `EXPLAIN`: Zeigt den Ausführungsplan einer SQL-Abfrage an, um deren Leistung zu analysieren.
-- `DESCRIBE` oder `DESC`: Zeigt die Struktur einer Tabelle an, einschließlich der Spalten und deren Datentypen.
-- `USE`: Wechselt die aktive Datenbank, auf die sich die nachfolgenden SQL-Befehle beziehen.
-- `SHOW`: Zeigt Informationen über Datenbankobjekte an, wie z.B. Tabellen, Indizes oder Datenbanken.
+- `COMMIT`: Bestätigt alle Änderungen, die durch DML-Befehle vorgenommen wurden.
+``` SQL
+COMMIT;
+```
+
+- `ROLLBACK`: Macht alle Änderungen rückgängig, die seit dem letzten `COMMIT` vorgenommen wurden.
+``` SQL
+ROLLBACK;
+```
+
+- `SAVEPOINT`: Setzt einen Speicherpunkt innerhalb einer Transaktion, zu dem später zurückgekehrt werden kann.
+``` SQL
+SAVEPOINT speicherpunkt_name;
+```
+
+- `SET TRANSACTION`: Legt Eigenschaften für die aktuelle Transaktion fest, wie z.B. die Isolationsstufe.
+``` SQL
+SET TRANSACTION ISOLATION LEVEL SERIALIZABLE;
+```
+
+Weitere SQL Vokale die ich keiner genauen Kategorie zuordnen kann:
+
+- `EXPLAIN`: Zeigt den Ausführungsplan für eine Abfrage an, um die Leistung zu analysieren.
+``` SQL
+EXPLAIN SELECT spalte1, spalte2
+FROM tabelle
+WHERE bedingung;
+```
+
+- `ANALYZE`: Aktualisiert Statistiken über die Daten in einer Tabelle, um die Leistung von Abfragen zu verbessern.
+``` SQL
+ANALYZE TABLE tabelle;
+```
+
+- `VACUUM`: Bereinigt und optimiert die Datenbank, indem nicht mehr benötigter Speicherplatz freigegeben wird.
+``` SQL
+VACUUM tabelle;
+```
+
+- `LOCK`: Sperrt eine Tabelle oder Zeile, um sicherzustellen, dass keine anderen Transaktionen gleichzeitig darauf zugreifen.
+``` SQL
+LOCK TABLE tabelle IN EXCLUSIVE MODE;
+```
+
+- `UNLOCK`: Hebt die Sperre von einer Tabelle oder Zeile auf.
+``` SQL
+UNLOCK TABLE tabelle;
+```
+
+- `SET`: Ändert die Konfigurationseinstellungen der Datenbank.
+``` SQL
+SET parameter_name = wert;
+```
+
+- `SHOW`: Zeigt den aktuellen Wert eines Konfigurationsparameters an.
+``` SQL
+SHOW parameter_name;
+```
+
+- `USE`: Wechselt die aktuelle Datenbank.
+``` SQL
+USE datenbank_name;
+```
+
+- `DESCRIBE`: Zeigt die Struktur einer Tabelle an, einschließlich der Spaltennamen und Datentypen.
+``` SQL
+DESCRIBE tabelle;
+```
