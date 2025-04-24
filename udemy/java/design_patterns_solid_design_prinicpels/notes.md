@@ -46,14 +46,14 @@ What problem want to solve that pattern?
 
 Why do you implement the builder?
 
-- We have a complex process to construct an object involving multible steps
+- We have a **complex process** to construct an object involving multible steps
 
 Considerations need to know!
 
 - Implementation Considerations
-   You can easily create an immutable class by implementing builder as
-   an inner static class.You'll find this type of implementation used
-   quite frequently even if immutability is not a main concern.
+   1. You can easily create an immutable class by implementing builder as
+      an inner static class.You'll find this type of implementation used
+      quite frequently even if immutability is not a main concern.
 - Design Considerations
    1. The director role is rarely implemented in a separate class,
       typically the consumer of the object instance or the client
@@ -63,3 +63,46 @@ Considerations need to know!
       concrete builder.
    3. If you are running into a "too many constructor arguments" problem
       then it's a good indication that builder pattern may help
+
+## Prototype
+
+What is a Prototype?
+
+- We have a complex object that is costly to create.
+  To create more instances of such class, we use an existing instance as our prototype
+
+What does a Prototype?
+
+- Prototype will allow us to make copies of existing object &
+  save us from having to recreate objects from scratch.
+
+Conditions to implement a prototype for a class!
+
+- The class must implmenet **Cloneable** interfaces
+- Class should override clone method and return copy of itself
+- The method should declare **CloneNotSupportException** in throws
+  clause to give supclasses chance to decide on whether to support cloning
+
+What is the Prototype registry?
+
+- The registery provides an easy way to access frequently used prototypes.
+  **It's not neccessary for the implementation of the prototype pattern**
+
+Considerations need to know!
+
+- Implementation considerations
+  1. Pay attention to the deep copy and shallow copy of referances.
+  2. Make sure to reset the mutabl state of object before returning the prototype.
+     It's a good idea to implement this in method to allow subclasses to
+     initialize themselves.
+  3. **clone()** method is protected in Object class and must be overridden to
+     be public to be callable from outside the class.
+  4. A **cloneable interface** is a "marker" indicator
+     that the class supports cloning.
+- Design considerations
+  1. Prototypes are useful when you have large objects where majority of state
+     is unchanged between instances and you can easily identify that state.
+  2. A prototype registry is a class where in you can register various prototypes
+     which other code can access to clone out insances. This solves the issue of
+     getting access to inital instance.
+  3. Prototypes are usefull when you're working in composites between classes.
