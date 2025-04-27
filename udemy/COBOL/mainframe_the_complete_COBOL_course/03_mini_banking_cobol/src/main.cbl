@@ -44,63 +44,14 @@
                  PERFORM MAIN-PROCEDURE
            END-EVALUATE.
 
-       TRANSFER-FUNDS.
-         DISPLAY "Enter account number where the money should go to".
-         ACCEPT WS-ACCOUNT-NUMBER.
-         DISPLAY "Enter the exact amount of money you want to send".
-         ACCEPT WS-TRANSFER-AMOUNT.
-         
-         OPEN I-O ACCOUNTS-FILE
-         SET EOF-LOOP-SWITCH TO 'N'
+       TRANSFER-FUNDS SECTION.
+           COPY "src/transfer_funds.cbl".
 
-         PERFORM UNTIL EOF-LOOP-SWITCH = 'Y'
-             READ ACCOUNTS-FILE INTO ACCOUNTS-RECORD
-               AT END
-                 SET EOF-LOOP-SWITCH TO 'Y'
-               NOT AT END
-                 IF WS-ACCOUNT-NUMBER = ACCOUNT-NUMBER
-                   ADD WS-TRANSFER-AMOUNT TO ACCOUNT-BALANCE
-                   REWRITE ACCOUNTS-RECORD
-                 END-IF
-             END-READ
-         END-PERFORM
+       LOAD-ACCOUNTS SECTION.
+           COPY "src/load_accounts.cbl".
 
-         CLOSE ACCOUNTS-FILE.
-         PERFORM MAIN-PROCEDURE.
+       SAVE-ACCOUNTS SECTION.
+           COPY "src/save_accounts.cbl".
 
-       LOAD-ACCOUNTS.
-         OPEN INPUT ACCOUNTS-FILE
-         SET EOF-LOOP-SWITCH TO 'N'
-           
-         PERFORM UNTIL EOF-LOOP-SWITCH = 'Y'
-           READ ACCOUNTS-FILE INTO ACCOUNTS-RECORD
-             AT END
-               SET EOF-LOOP-SWITCH TO 'Y'
-             NOT AT END
-               DISPLAY ACCOUNT-NUMBER ACCOUNT-NAME ACCOUNT-BALANCE
-           END-READ
-         END-PERFORM
-           
-         CLOSE ACCOUNTS-FILE.
-         PERFORM MAIN-PROCEDURE.
-
-       SAVE-ACCOUNTS.
-           DISPLAY "Enter account number to save: ".
-           ACCEPT WS-ACCOUNT-NUMBER.
-           DISPLAY "Enter account name to save: ".
-           ACCEPT WS-ACCOUNT-NAME.
-           
-           MOVE WS-ACCOUNT-NUMBER TO ACCOUNT-NUMBER.
-           MOVE WS-ACCOUNT-NAME TO ACCOUNT-NAME.
-           MOVE 0 TO ACCOUNT-BALANCE.
-           
-           OPEN OUTPUT ACCOUNTS-FILE.
-           WRITE ACCOUNTS-RECORD.
-           CLOSE ACCOUNTS-FILE.
-           
-           DISPLAY "Account saved successfully.".
-           PERFORM MAIN-PROCEDURE.
-
-       EXIT-PROGRAM.
-           DISPLAY "Exiting the program."
-           STOP RUN.
+       EXIT-PROGRAM SECTION.
+           COPY "src/exit_pr.cbl".
