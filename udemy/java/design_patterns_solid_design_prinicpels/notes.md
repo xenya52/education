@@ -160,3 +160,36 @@ Consideerations you need to know!
   2. Template method design pattern often makes use of factory methods.
   3. Another creational design pattern called "abstract factory" makes use of
      factory method pattern.
+
+## Abstract Factory
+
+What is an Abstract Factory?
+
+- Abstract factory is used when we have two or more objects which work together
+  forming a kit or set and there can be multible sets or kits that can be
+  created by client code.
+- So we separate client code from concrete objects forming such a set and also
+  from the code which creates these sets.
+- When you have multible sets of objects where objects in one set work together
+  then you can use abstract factory pattern to isolate client code
+  from concrete objects & their factories.
+
+Considerations you need to know!
+
+- Implementation Considerations
+  1. Factories can be implemented as singetons, we typically every need only
+     one instance of it anyway. But make sure to familiarize yourself with
+     drawbacks of singletons.
+  2. Adding a new product type requiers changes to the base factory as well
+     as all implmenetations of factory.
+  3. We provide the client code with concrete factory so that it can create
+     objects.
+  4. Adding a new product to the pattern means that youre need to change the
+     whole base factory, furthermore all its implementations.
+
+- Design Considerations
+  1. When you want to constrain object creations so that they all work together
+     then abstract factory is a good deisgn pattern.
+  2. **Abstract factory uses the factory method pattern.**
+  3. If objects are expensive to create then you can transparently switch factory
+     Implementations to use prototype design pattern to create bjects.
