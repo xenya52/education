@@ -64,7 +64,7 @@ Considerations need to know!
    3. If you are running into a "too many constructor arguments" problem
       then it's a good indication that builder pattern may help
 
-## Prototype
+### Prototype
 
 What is a Prototype?
 
@@ -107,7 +107,7 @@ Considerations need to know!
      getting access to inital instance.
   3. Prototypes are usefull when you're working in composites between classes.
 
-## Singleton
+### Singleton
 
 What is a Singleton?
 
@@ -134,7 +134,7 @@ Implementation of a singleton
   2. Lazy initalization - Lazy Singleton
       - Singleton is created when it is first requierd
 
-## Factory Method
+### Factory Method
 
 What is a Factory Method?
 
@@ -161,7 +161,7 @@ Consideerations you need to know!
   3. Another creational design pattern called "abstract factory" makes use of
      factory method pattern.
 
-## Abstract Factory
+### Abstract Factory
 
 What is an Abstract Factory?
 
@@ -193,3 +193,79 @@ Considerations you need to know!
   2. **Abstract factory uses the factory method pattern.**
   3. If objects are expensive to create then you can transparently switch factory
      Implementations to use prototype design pattern to create bjects.
+
+## Structural deisgn patterns
+
+### Adapter
+
+What is Adapter?
+
+- We have an existing object which provides the functionality that the client needs.
+  But client code can't use this object because it expects an object with
+  different interface.
+- Using adapter design pattern we make this existing object work with client by
+  adapting the object to client's expected interface
+- This pattern is also called as **wrapper** as it "wraos" the existing object.
+- They're two types of adapter the object adapter and the class adapter /
+  two way adapter
+
+Implementation
+
+- We start by creating a class for the adapter...
+  1. Adapter must implement the **interface expected by the client.**
+  2. First we're going to try out a class adapter by also extending
+     from our existing class.
+  3. In the class adapter implementation we're simply going to forward
+     the method to another method inherited from adaptee.
+  4. Next for **object adapter**, we're only going to implement target interface
+     and accept adaptee as constructor argument in adapter i.e. make use of
+     composition.
+
+Considerations you need to know!
+
+- Implementation Considerations
+  1. How much work the adapter does depends upon the differences between target
+     interface and object being adapted. If method arguments are same or similar
+     adapter has less work todo, so its quite unproductive.
+  2. Using class adapter "allows" you to override some of the adaptee's behavior.
+     But this has to be avoided as you end up with adapter that behaves different
+     than adaptee. **Than fixing defects is not easy anymore!**
+  3. Using object adapter allows you ti potentially change the adaptee object to
+     one of its supclasses.
+
+- Design Considerations
+  1. In java a "class adapter" may not be possible if both target and adaptee are
+     concrete classes. In such cases the object adapter is the only solution.
+     Also since there is no private inheritance in Java, it's better to stick
+     with object adapter.
+  2. A class adapter is also called as a two way adapter, since it can stand in for
+     both the target interface and for the adaptee. That is we can use object of
+     adapter where either target interface is expected as well as where an
+     adaptee object is expected.
+
+### Bridge
+
+What is a bridge?
+
+- Our Implementation & abstraction are generally coupeld to each other in normal
+  inheritance.
+- Using bridge pattern we can decouple them so they can both, change without affecting
+  each other.
+- We achieve this feat by creating two separate inheritance hierachies; one for
+  Implementation and another for abstraction.
+
+Considerations you need to know!
+
+- implmenetation Considerations
+  1. In case we are ever going to have a single Implementation then we can skip creating
+     abstract implementor.
+  2. Abstraction can decide on its own whih concrete implementor to use in its constructor
+     or we can delegate that decision to a third class. In lasst apporach abstraction
+     remains unaware of concrete implementors & provides greater de-coupling.
+- Desing Coonsiderations
+  1. Bridge provides great extensibility by allowing us to change abstraction
+     and implementor independently. You can build & package them separately
+     to modularize overall system.
+  2. By using abstract factory pattern to create abstraction objects with
+     correct Implementation you can decouple concrete
+     implementors from abstraction.
