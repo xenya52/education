@@ -19,16 +19,15 @@ This project aims to create a simple and easy-to-use plant care application that
 
 ## Architecture
 
-- For the **Plantcare application itself**, I wanna use the MVC pattern. The model will be responsible for managing the data, the view will handle the user interface, and the controller will manage the interaction between the model and the view.
 - For the **database**, I will use SQLite as a lightweight and easy-to-use database solution. SQLite is a self-contained, serverless, and zero-configuration database engine that is perfect for small to medium-sized applications. It is also cross-platform and can be easily integrated into the application.
 
 ## Technologies
 
 - **Programming Language**: TypeScript
 - **Framework**: React
+- **Build Tool**: Vite
 - **Database**: SQLite
 - **State Management**: Redux
 - **UI Library**: Material-UI
 - **Testing**: Jest, React Testing Library
-- **Build Tool**: npm
 - **Version Control**: Git
