@@ -2,6 +2,7 @@ import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Layout from "./views/Layout";
 import PlantListView from "./views/PlantListView";
+import AddEditPlantView from "./views/AddEditPlantView";
 
 const App: React.FC = () => {
   return (
@@ -9,7 +10,8 @@ const App: React.FC = () => {
       <Layout>
         <Routes>
           <Route path="/" element={<PlantListView />} />
-          {/* Add routes for Add/Edit Plant and Plant Details later */}
+          <Route path="/plants/add" element={<AddEditPlantView />} />
+          <Route path="/plants/edit/:id" element={<AddEditPlantView />} />
         </Routes>
       </Layout>
     </Router>

@@ -44,8 +44,20 @@ const PlantListView: React.FC = () => {
           </ListItem>
         ))}
       </List>
-      <Button variant="contained" color="primary" style={{ marginTop: "20px" }}>
+      <Button
+        variant="contained"
+        color="primary"
+        style={{ marginTop: "20px" }}
+        onClick={() => navigate("/plants/add")}
+      >
         Add New Plant
+      </Button>
+      <Button
+        variant="outlined"
+        color="primary"
+        onClick={() => navigate(`/plants/edit/${plant.id}`)}
+      >
+        Edit
       </Button>
     </>
   );
