@@ -5,6 +5,7 @@ const config: Config = {
   preset: "ts-jest",
   testEnvironment: "node",
   moduleFileExtensions: ["ts", "tsx", "js", "jsx", "json", "node"],
+  setupFilesAfterEnv: ["<rootDir>/setupTests.ts"],
   rootDir: "./src",
   testMatch: ["**/__tests__/**/*.(test|spec).ts"],
   transform: {

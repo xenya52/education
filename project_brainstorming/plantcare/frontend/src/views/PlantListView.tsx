@@ -6,10 +6,12 @@ import {
   Typography,
   Button,
 } from "@mui/material";
+import { useNavigate } from "react-router-dom"; // Import useNavigate
 import type { Plant } from "../models/PlantModel";
 
 const PlantListView: React.FC = () => {
   const [plants, setPlants] = useState<Plant[]>([]);
+  const navigate = useNavigate(); // Initialize navigate
 
   useEffect(() => {
     // Fetch all plants from the backend API
@@ -41,6 +43,13 @@ const PlantListView: React.FC = () => {
               primary={plant.name}
               secondary={`Species: ${plant.species}, Watering: Every ${plant.watering_schedule} days`}
             />
+            <Button
+              variant="outlined"
+              color="primary"
+              onClick={() => navigate(`/plants/edit/${plant.id}`)} // Use navigate here
+            >
+              Edit
+            </Button>
           </ListItem>
         ))}
       </List>
@@ -48,16 +57,9 @@ const PlantListView: React.FC = () => {
         variant="contained"
         color="primary"
         style={{ marginTop: "20px" }}
-        onClick={() => navigate("/plants/add")}
+        onClick={() => navigate("/plants/add")} // Use navigate here
       >
         Add New Plant
-      </Button>
-      <Button
-        variant="outlined"
-        color="primary"
-        onClick={() => navigate(`/plants/edit/${plant.id}`)}
-      >
-        Edit
       </Button>
     </>
   );
