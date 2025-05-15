@@ -11,8 +11,8 @@ import {
 
 const AddEditPlantView: React.FC = () => {
   const navigate = useNavigate();
-  const { id } = useParams<{ id: string }>(); // Get the plant ID from the URL
-  const isEditMode = Boolean(id); // Determine if we're editing or adding
+  const { id } = useParams<{ id: string }>();
+  const isEditMode = Boolean(id);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [plant, setPlant] = useState({
@@ -23,7 +23,6 @@ const AddEditPlantView: React.FC = () => {
     care_tips: "",
   });
 
-  // Fetch plant details if in edit mode
   useEffect(() => {
     if (isEditMode) {
       setLoading(true);
@@ -45,13 +44,19 @@ const AddEditPlantView: React.FC = () => {
     }
   }, [id, isEditMode]);
 
-  // Handle form input changes
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
+
+    // Prevent negative numbers for watering_schedule
+    if (name === "watering_schedule" && Number(value) < 0) {
+      setError("Watering schedule cannot be negative.");
+      return;
+    }
+
+    setError(null); // Clear any previous errors
     setPlant((prev) => ({ ...prev, [name]: value }));
   };
 
-  // Handle form submission
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     setLoading(true);
@@ -76,7 +81,7 @@ const AddEditPlantView: React.FC = () => {
         return response.json();
       })
       .then(() => {
-        navigate("/"); // Redirect to the plant list view
+        navigate("/");
       })
       .catch((error) => {
         setError(error.message);
@@ -137,6 +142,7 @@ const AddEditPlantView: React.FC = () => {
           margin="normal"
           required
           type="number"
+          inputProps={{ min: 0 }} // Prevent negative numbers in the UI
         />
         <TextField
           label="Light Requirements"

@@ -31,6 +31,24 @@ const PlantListView: React.FC = () => {
     fetchPlants();
   }, []);
 
+  // Function to handle plant deletion
+  const handleDelete = async (plantId: number) => {
+    try {
+      const response = await fetch(`http://localhost:3001/plants/${plantId}`, {
+        method: "DELETE",
+      });
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+      // Remove the deleted plant from the state
+      setPlants((prevPlants) =>
+        prevPlants.filter((plant) => plant.id !== plantId),
+      );
+    } catch (error) {
+      console.error("Error deleting plant:", error);
+    }
+  };
+
   return (
     <>
       <Typography variant="h4" gutterBottom>
@@ -47,8 +65,16 @@ const PlantListView: React.FC = () => {
               variant="outlined"
               color="primary"
               onClick={() => navigate(`/plants/edit/${plant.id}`)} // Use navigate here
+              style={{ marginRight: "10px" }}
             >
               Edit
+            </Button>
+            <Button
+              variant="outlined"
+              color="secondary"
+              onClick={() => handleDelete(plant.id)} // Call handleDelete with the plant ID
+            >
+              Delete
             </Button>
           </ListItem>
         ))}

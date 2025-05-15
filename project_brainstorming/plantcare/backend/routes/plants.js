@@ -1,8 +1,7 @@
-// backend/routes/plants.js
 const express = require("express");
 const PlantRepository = require("../PlantRepository");
 
-const router = express.Router();
+const router = express.Router(); // Initialize the router
 
 // Get all plants
 router.get("/", (req, res) => {
@@ -18,8 +17,23 @@ router.get("/", (req, res) => {
 // Add a new plant
 router.post("/", (req, res) => {
   try {
-    const plantData = req.body;
-    const plantId = PlantRepository.createPlant(plantData);
+    const { name, species, watering_schedule, light_requirements, care_tips } =
+      req.body;
+
+    // Validate watering_schedule
+    if (watering_schedule < 0) {
+      return res
+        .status(400)
+        .json({ error: "Watering schedule cannot be negative." });
+    }
+
+    const plantId = PlantRepository.createPlant({
+      name,
+      species,
+      watering_schedule,
+      light_requirements,
+      care_tips,
+    });
     res.json({ id: plantId });
   } catch (error) {
     console.error("Error adding plant:", error);
@@ -30,11 +44,29 @@ router.post("/", (req, res) => {
 // Update a plant
 router.put("/:id", (req, res) => {
   try {
+    const { name, species, watering_schedule, light_requirements, care_tips } =
+      req.body;
+
+    // Validate watering_schedule
+    if (watering_schedule < 0) {
+      return res
+        .status(400)
+        .json({ error: "Watering schedule cannot be negative." });
+    }
+
     const plantId = parseInt(req.params.id, 10);
-    const updated = PlantRepository.updatePlant(plantId, req.body);
+    const updated = PlantRepository.updatePlant(plantId, {
+      name,
+      species,
+      watering_schedule,
+      light_requirements,
+      care_tips,
+    });
+
     if (!updated) {
       return res.status(404).json({ error: "Plant not found" });
     }
+
     res.json({ success: updated });
   } catch (error) {
     console.error("Error updating plant:", error);
@@ -57,4 +89,5 @@ router.delete("/:id", (req, res) => {
   }
 });
 
+// Export the router
 module.exports = router;

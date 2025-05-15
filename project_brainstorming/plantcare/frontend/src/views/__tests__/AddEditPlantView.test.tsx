@@ -157,4 +157,38 @@ describe("AddEditPlantView", () => {
       expect(screen.getByText("Failed to add plant")).toBeInTheDocument();
     });
   });
+
+  it("deletes a plant", async () => {
+    // Mock the fetch call for deleting a plant
+    (global.fetch as jest.Mock).mockResolvedValueOnce({
+      ok: true,
+    });
+
+    render(
+      <Router>
+        <Routes>
+          <Route path="/" element={<AddEditPlantView />} />
+        </Routes>
+      </Router>,
+    );
+
+    // Simulate clicking the delete button
+    const deleteButton = screen.getByRole("button", { name: /delete plant/i });
+    fireEvent.click(deleteButton);
+
+    // Wait for the API call to complete
+    await waitFor(() => {
+      expect(global.fetch).toHaveBeenCalledWith(
+        "http://localhost:3001/plants/1", // Assuming plant ID is 1
+        {
+          method: "DELETE",
+        },
+      );
+    });
+
+    // Ensure the plant is removed from the UI
+    await waitFor(() => {
+      expect(screen.queryByText("Test Plant")).not.toBeInTheDocument();
+    });
+  });
 });
