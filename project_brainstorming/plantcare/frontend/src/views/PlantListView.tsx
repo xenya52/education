@@ -64,7 +64,7 @@ const PlantListView: React.FC = () => {
             <Button
               variant="outlined"
               color="primary"
-              onClick={() => navigate(`/plants/edit/${plant.id}`)} // Use navigate here
+              onClick={() => navigate(`/plants/edit/${plant.id}`)}
               style={{ marginRight: "10px" }}
             >
               Edit
@@ -72,7 +72,7 @@ const PlantListView: React.FC = () => {
             <Button
               variant="outlined"
               color="secondary"
-              onClick={() => handleDelete(plant.id)} // Call handleDelete with the plant ID
+              onClick={() => plant.id !== undefined && handleDelete(plant.id)}
             >
               Delete
             </Button>
