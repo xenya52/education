@@ -8,14 +8,11 @@
 plugins {
     id("java")
     id("war")
+    id("org.gretty") version "4.0.3"
 }
 
-group "fish.payara.jakarta.ee11.start"
-version "1.0-SNAPSHOT"
-
-java {
-    sourceCompatibility = JavaVersion.VERSION_11
-    targetCompatibility = JavaVersion.VERSION_11
+gretty {
+    servletContainer = "tomcat11"
 }
 
 repositories {
@@ -23,10 +20,17 @@ repositories {
 }
 
 dependencies {
-    // https://mvnrepository.com/artifact/org.junit.jupiter/junit-jupiter-api
-    testImplementation("org.junit.jupiter:junit-jupiter-api:5.9.3")
-    testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:5.9.3")
+    // JSF API
+    // https://mvnrepository.com/artifact/jakarta.faces/jakarta.faces-api
+    implementation("jakarta.faces:jakarta.faces-api:4.1.2")
 
-    // https://mvnrepository.com/artifact/jakarta.platform/jakarta.jakartaee-web-api
-    compileOnly("jakarta.platform:jakarta.jakartaee-web-api:11.0.0")
+    // JUnit for testing
+    // https://mvnrepository.com/artifact/org.junit.jupiter/junit-jupiter-api
+    testImplementation("org.junit.jupiter:junit-jupiter-api:5.13.0-M1")
+    // https://mvnrepository.com/artifact/org.junit.jupiter/junit-jupiter-api
+    runtimeOnly("org.junit.jupiter:junit-jupiter-api:5.13.0-M1")
+
+    // JSF Specificaton
+    // https://mvnrepository.com/artifact/com.sun.faces/jsf-impl
+    implementation("com.sun.faces:jsf-impl:2.1.25")
 }
