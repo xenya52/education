@@ -1,6 +1,6 @@
 # Java bascis
 
-The **Java Development Kit (JDK)** is a software development environment used for developing Java applications and applets. It includes the Java **Runtime Environment (JRE / JVM)**, an **interpreter/loader (Java)**, a **compiler (javac)**, an **archiver (jar)**, a **documentation generator (Javadoc)**, **a debugger (jdb), and other tools needed in Java development.
+The **Java Development Kit (JDK)** is a software development environment used for developing Java applications and applets. It includes the Java **Runtime Environment (JRE / JVM)**, an **interpreter/loader (Java)**, a **compiler (javac)**, an **archiver (jar)**, a **documentation generator (Javadoc)**, **a debugger (jdb)**, and other tools needed in Java development.
 
 Gradle Maven = Build automation tools ("used to build software")
 
