@@ -10,7 +10,7 @@ version = "0.0.1-SNAPSHOT"
 
 java {
 	toolchain {
-		languageVersion = JavaLanguageVersion.of(17)
+		languageVersion = JavaLanguageVersion.of(23)
 	}
 }
 
@@ -24,6 +24,21 @@ dependencies {
 	implementation("com.vaadin:vaadin-spring-boot-starter")
 	testImplementation("org.springframework.boot:spring-boot-starter-test")
 	testRuntimeOnly("org.junit.platform:junit-platform-launcher")
+
+	// Lombok for reducing boilerplate code
+	compileOnly("org.projectlombok:lombok:1.18.38")
+	annotationProcessor("org.projectlombok:lombok:1.18.38")
+
+	testCompileOnly("org.projectlombok:lombok:1.18.38")
+	testAnnotationProcessor("org.projectlombok:lombok:1.18.38")
+
+	// For database usage
+	implementation("org.springframework.boot:spring-boot-starter-validation:3.5.0")
+	implementation("org.springframework.boot:spring-boot-starter-data-jpa:3.5.0")
+
+	// For the acutal database connection
+	implementation("org.xerial:sqlite-jdbc:3.49.1.0")
+	implementation("org.hibernate.orm:hibernate-community-dialects:7.0.0.Final")
 }
 
 dependencyManagement {

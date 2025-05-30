@@ -23,7 +23,7 @@ Data is managed locally using an SQLite database, while the actual files are sto
 
 | Technology  | Purpose                            |
 |-------------|-------------------------------------|
-| Java 17     | Programming language                |
+| Java 23     | Programming language                |
 | Vaadin 24   | UI framework (Java-based)           |
 | Spring Boot | Backend framework & configuration   |
 | SQLite      | Database for metadata               |
@@ -126,6 +126,17 @@ Total timespan: 2025-05-29 -> 2023-06-12 (two Weeks)
    - Create initial folder structure and class diagram
    - Create initial README.md file with project description and TODOs
 2. 30.05 - Implement test cases for the MediaFile model, Implement MediaFile model and repository, create SQLite database (2h)
+   - Change Java version to 23 because of Vaadin 24 and Java 17 makes no sense for me because I do not need to refactor anythin up
+   - Create Tests for MediaFileModel, MediaFileModelBuilder and MediaFileDirector because I wanna use the builder pattern for my Model with multiple properties and Constructor
+   - Add lombok to the project for easier model creation and reduce boilerplate code
+   - Create MediaFile model with properties like id, name, fileType, uploadDate, and path
+   - Add dependency for validating my model with annotations like @NotNull, @NotBlank, etc.
+   - Add JPA API, JPA Implementation and JDBC with starter-data-jpa to the project
+   - Create MediaRepository interface for CRUD operations on MediaFile
+   - Create Builder and Director for MediaFile model to simplify object creation
+   - Add SQLite database dependency to the project (sqlite-jdbc)
+   - Add SQLite dialect plugin to the project for JPA
+   - Add SQLite database configuration to application.properties
 3. 31.05 - Implement test cases for MediaService, Implement MediaService with upload and delete functionality, create service interface (2h)
 4. 01.06 - Implement test cases for MainView, Implement MainView with upload and delete functionality, create UI components (2h)
     - **Warning**: Could take longer because of private reasons.
