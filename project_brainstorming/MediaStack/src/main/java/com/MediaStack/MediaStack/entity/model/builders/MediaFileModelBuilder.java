@@ -2,17 +2,19 @@ package com.MediaStack.MediaStack.entity.model.builders;
 
 import java.time.LocalDateTime;
 
+import java.lang.Long;
+
 import com.MediaStack.MediaStack.entity.model.mediaFile.MediaFileModel;
 import com.MediaStack.MediaStack.entity.model.mediaFile.MediaFileTypeEnum;
 
 public class MediaFileModelBuilder {
-    private String id;
+    private Long id;
     private String name;
     private MediaFileTypeEnum fileType;
     private LocalDateTime uploadDate;
     private String path;
 
-    public MediaFileModelBuilder setId(String id) {
+    public MediaFileModelBuilder setId(Long id) {
         this.id = id;
         return this;
     }

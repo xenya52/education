@@ -138,6 +138,13 @@ Total timespan: 2025-05-29 -> 2023-06-12 (two Weeks)
    - Add SQLite dialect plugin to the project for JPA
    - Add SQLite database configuration to application.properties
 3. 31.05 - Implement test cases for MediaService, Implement MediaService with upload and delete functionality, create service interface (2h)
+   - Fix the MediaFileModel with adding a @AllArgsConstructor and @NoArgsConstructor annotation for the Builder and Director pattern
+   - Removed @SpringBootTest annotation from the MediaFileModelTests because it is not needed to get the full Spring context loaded
+   - Add a application.properties to the tests and rename the root gradle.properties.kts file to application.properties
+   - Adjust the MediaFileModel with more percistence and validation annotations, furthermore add lombok toString() annotation
+   - Edit the id in MediaFileModel to a Long type and add @GeneratedValue(strategy = GenerationType.IDENTITY) annotation to it
+   - Fixed expected String test for MediaFileModel
+   - Add LocalDateTime to the director parameters and adjust tje director tests for that
 4. 01.06 - Implement test cases for MainView, Implement MainView with upload and delete functionality, create UI components (2h)
     - **Warning**: Could take longer because of private reasons.
 5. 02.06 - Implement file upload, deletion functionality (idk i think there a no tests possible form my view now), Implement file storage in the local file system (1h)

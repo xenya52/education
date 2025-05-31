@@ -2,6 +2,8 @@ package com.MediaStack.MediaStack.MediaFileModel;
 
 import java.time.LocalDateTime;
 
+import java.lang.Long;
+
 import org.junit.jupiter.api.Test;
 
 import org.springframework.boot.test.context.SpringBootTest;
@@ -9,7 +11,6 @@ import org.springframework.boot.test.context.SpringBootTest;
 import com.MediaStack.MediaStack.entity.model.mediaFile.MediaFileModel;
 import com.MediaStack.MediaStack.entity.model.mediaFile.MediaFileTypeEnum;
 
-@SpringBootTest
 public class MediaFileModelTest {
 
     @Test
@@ -17,13 +18,13 @@ public class MediaFileModelTest {
         MediaFileModel mediaFile = new MediaFileModel();
         LocalDateTime uploadDate = LocalDateTime.of(2025, 5, 30, 0, 0);
 
-        mediaFile.setId("12345");
+        mediaFile.setId(12345L);
         mediaFile.setName("Sample Media Video");
         mediaFile.setFileType(MediaFileTypeEnum.VIDEO_MP4);
         mediaFile.setUploadDate(uploadDate);
         mediaFile.setPath("exampleName/mp4");
 
-        assert mediaFile.getId().equals("12345");
+        assert mediaFile.getId().equals(12345L);
         assert mediaFile.getName().equals("Sample Media Video");
         assert mediaFile.getFileType().equals(MediaFileTypeEnum.VIDEO_MP4);
         assert mediaFile.getUploadDate().equals(uploadDate);
@@ -35,13 +36,13 @@ public class MediaFileModelTest {
         MediaFileModel mediaFile = new MediaFileModel();
         LocalDateTime uploadDate = LocalDateTime.of(2025, 5, 30, 0, 0);
 
-        mediaFile.setId("12345");
+        mediaFile.setId(12345L);
         mediaFile.setName("Sample Media Video");
         mediaFile.setFileType(MediaFileTypeEnum.VIDEO_MP4);
         mediaFile.setUploadDate(uploadDate);
         mediaFile.setPath("exampleName/mp4");
 
-        String expectedString = "MediaFileModel{id='12345', name='Sample Media Video', fileType=VIDEO_MP4, uploadDate='2025-05-30', path='exampleName/mp4'}";
+        String expectedString = "MediaFileModel(id=12345, name=Sample Media Video, fileType=VIDEO_MP4, uploadDate=2025-05-30T00:00, path=exampleName/mp4)";
 
         assert mediaFile.toString().equals(expectedString);
     }

@@ -2,6 +2,8 @@ package com.MediaStack.MediaStack.entity.model.director;
 
 import java.time.LocalDateTime;
 
+import java.lang.Long;
+
 import com.MediaStack.MediaStack.entity.model.mediaFile.MediaFileModel;
 import com.MediaStack.MediaStack.entity.model.mediaFile.MediaFileTypeEnum;
 
@@ -15,12 +17,12 @@ public class Director {
      * @param path      the path to the media file
      * @return a MediaFileModel representing a video file
      */
-    public MediaFileModel constructVideoFileModel(String id, String name, String uploadDate, String path) {
+    public MediaFileModel constructVideoFileModel(Long id, String name, LocalDateTime uploadDate, String path) {
         MediaFileModel mediaFile = new MediaFileModel();
         mediaFile.setId(id);
         mediaFile.setName(name);
         mediaFile.setFileType(MediaFileTypeEnum.VIDEO_MP4);
-        mediaFile.setUploadDate(LocalDateTime.parse(uploadDate));
+        mediaFile.setUploadDate(uploadDate);
         mediaFile.setPath(path);
         return mediaFile;
     }
@@ -34,12 +36,12 @@ public class Director {
      * @param path      the path to the media file
      * @return a MediaFileModel representing an image file
      */
-    public MediaFileModel constructImageFileModel(String id, String name, String uploadDate, String path) {
+    public MediaFileModel constructImageFileModel(Long id, String name, LocalDateTime uploadDate, String path) {
         MediaFileModel mediaFile = new MediaFileModel();
         mediaFile.setId(id);
         mediaFile.setName(name);
         mediaFile.setFileType(MediaFileTypeEnum.IMAGE_JPG);
-        mediaFile.setUploadDate(LocalDateTime.parse(uploadDate));
+        mediaFile.setUploadDate(uploadDate);
         mediaFile.setPath(path);
         return mediaFile;
     }
@@ -53,12 +55,12 @@ public class Director {
      * @param path      the path to the media file
      * @return a MediaFileModel representing a PDF file
      */
-    public MediaFileModel constructPdfFileModel(String id, String name, String uploadDate, String path) {
+    public MediaFileModel constructPdfFileModel(Long id, String name, LocalDateTime uploadDate, String path) {
         MediaFileModel mediaFile = new MediaFileModel();
         mediaFile.setId(id);
         mediaFile.setName(name);
         mediaFile.setFileType(MediaFileTypeEnum.PDF);
-        mediaFile.setUploadDate(LocalDateTime.parse(uploadDate));
+        mediaFile.setUploadDate(uploadDate);
         mediaFile.setPath(path);
         return mediaFile;
     }
