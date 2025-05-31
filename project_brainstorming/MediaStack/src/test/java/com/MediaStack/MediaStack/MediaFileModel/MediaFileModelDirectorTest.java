@@ -13,8 +13,7 @@ public class MediaFileModelDirectorTest {
     @Test
     void testConstructVideoFileModel() {
         Director mediaFileDirector = new Director();
-        LocalDateTime uploadDate = LocalDateTime.parse("2025-05-30T00:00:00");
-        MediaFileModel mediaFile = mediaFileDirector.constructVideoFileModel(12345L, "Sample Media Video", uploadDate, "exampleName/mp4");
+        MediaFileModel mediaFile = mediaFileDirector.constructVideoFileModel( "Sample Media Video", "exampleName/mp4");
 
         assert mediaFile.getFileType().equals(MediaFileTypeEnum.VIDEO_MP4);
     }
@@ -22,8 +21,7 @@ public class MediaFileModelDirectorTest {
     @Test
     void testConstructImageFileModel() {
         Director mediaFileDirector = new Director();
-        LocalDateTime uploadDate = LocalDateTime.parse("2025-05-30T00:00:00");
-        MediaFileModel mediaFile = mediaFileDirector.constructImageFileModel(12345L, "Sample Media Image", uploadDate, "exampleName/jpg");
+        MediaFileModel mediaFile = mediaFileDirector.constructImageFileModel( "Sample Media Image", "exampleName/jpg");
 
         assert mediaFile.getFileType().equals(MediaFileTypeEnum.IMAGE_JPG);
     }
@@ -31,8 +29,7 @@ public class MediaFileModelDirectorTest {
     @Test
     void testConstructPdfFileModel() {
         Director mediaFileDirector = new Director();
-        LocalDateTime uploadDate = LocalDateTime.parse("2025-05-30T00:00:00");
-        MediaFileModel mediaFile = mediaFileDirector.constructPdfFileModel(12345L, "Sample Media PDF", uploadDate, "exampleName/pdf");
+        MediaFileModel mediaFile = mediaFileDirector.constructPdfFileModel("Sample Media PDF", "exampleName/pdf");
 
         assert mediaFile.getFileType().equals(MediaFileTypeEnum.PDF);
     }
