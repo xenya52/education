@@ -152,7 +152,16 @@ Total timespan: 2025-05-29 -> 2023-06-12 (two Weeks)
    - Adjust the MediaFileModel Director tests for the new changes in the Director class
    - Create dumby MediaFiles in Mock up database for the MediaService tests
 4. 01.06 - Implement test cases for MainView, Implement MainView with upload and delete functionality, create UI components (2h)
-    - **Warning**: Could take longer because of private reasons.
+    - Add a default view to get into vaadin, worked after the first run
+    - Setup AppShellConfig for vaadin to use the correct theme and icons
+    - Create a config folder for the ShellConfig 
+    - Add a Header and a coloring button for deeper understanding of the Vaadin framework
+    - Add multible functions to the MainView
+        - setupUplad() has the functionality to upload files
+        - getFileType() determines the file type based on the file extension
+        - setupGrid() sets up the grid to display media files
+        - refreshGrid() refreshes the grid to show the latest media files
+    - Add tests for MainView with JUnit, but afterwards what was a mistake because of my TDD rule
 5. 02.06 - Implement file upload, deletion functionality (idk i think there a no tests possible form my view now), Implement file storage in the local file system (1h)
 6. 03.06 - Bug fixing and code cleanup, looking for potential patterns (1h)
 7. 04.06 - A short User Manual / Documentation and final touches (30 min)

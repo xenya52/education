@@ -42,4 +42,12 @@ public class MediaFileService {
     public Collection<MediaFileModel> getAllMediaFiles() {
         return mediaFileRepository.findAll();
     }
+
+    public boolean deleteMediaFileById(Long id) {
+        if (!mediaFileRepository.existsById(id)) {
+            throw new IllegalArgumentException("Media file not found with id: " + id);
+        }
+        mediaFileRepository.deleteById(id);
+        return true;
+    }
 }

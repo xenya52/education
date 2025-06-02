@@ -55,4 +55,21 @@ public class MediaFileServiceTest {
         assert foundMediaFile != null : "Media file should not be null";
         assert foundMediaFile.getId().equals(savedMediaFile.getId()) : "Media file ID should match";
     }
+
+    @Test
+    void testMediaFileServiceDeleteMediaFileById() {
+        // Insert test data
+        Director director = new Director();
+        MediaFileModel mediaFile = director.constructVideoFileModel("Test Video", "test/path/video.mp4");
+        MediaFileModel savedMediaFile = mediaFileService.createMediaFile(mediaFile);
+
+        mediaFileService.deleteMediaFileById(savedMediaFile.getId());
+
+        try {
+            mediaFileService.getMediaFileById(savedMediaFile.getId());
+            assert false : "Expected exception not thrown";
+        } catch (IllegalArgumentException e) {
+            assert e.getMessage().contains("Media file not found with id") : "Exception message should indicate not found";
+        }
+    }
 }

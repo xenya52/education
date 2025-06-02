@@ -14,6 +14,10 @@ java {
 	}
 }
 
+springBoot {
+	mainClass.set("com.MediaStack.MediaStack.MediaStackApplication")
+}
+
 repositories {
 	mavenCentral()
 }
@@ -22,6 +26,7 @@ extra["vaadinVersion"] = "24.7.6"
 
 dependencies {
 	implementation("com.vaadin:vaadin-spring-boot-starter")
+	implementation("org.springframework:spring-test")
 	testImplementation("org.springframework.boot:spring-boot-starter-test")
 	testRuntimeOnly("org.junit.platform:junit-platform-launcher")
 
