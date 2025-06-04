@@ -2,15 +2,18 @@ package com.MediaStack.MediaStack.ui;
 
 import com.MediaStack.MediaStack.entity.model.director.Director;
 import com.MediaStack.MediaStack.entity.model.mediaFile.MediaFileModel;
-import com.MediaStack.MediaStack.entity.model.mediaFile.MediaFileTypeEnum;
 import com.MediaStack.MediaStack.service.MediaFileService;
+import com.MediaStack.MediaStack.service.MediaFileStorageService;
 
 import com.vaadin.flow.component.UI;
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.grid.Grid;
 import com.vaadin.flow.component.html.H1;
 import com.vaadin.flow.component.notification.Notification;
+import com.vaadin.flow.component.orderedlayout.FlexComponent;
+import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
+import com.vaadin.flow.component.textfield.TextField;
 import com.vaadin.flow.component.upload.Upload;
 import com.vaadin.flow.component.upload.receivers.MemoryBuffer;
 import com.vaadin.flow.dom.ThemeList;
@@ -23,23 +26,24 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.time.LocalDateTime;
 import java.util.Collection;
 
 @Route("")
 public class MainView extends VerticalLayout {
 
     private final MediaFileService mediaService;
+    private final MediaFileStorageService mediaFileStorageService;
     private final Grid<MediaFileModel> grid = new Grid<>(MediaFileModel.class);
 
     @Autowired
     public MainView(MediaFileService mediaService) {
         this.mediaService = mediaService;
+        this.mediaFileStorageService = new MediaFileStorageService(mediaService);
 
         add(new H1("MediaStack"));
 
         setupColoringButton();
-        setupUpload();
+        setupExportAndUploadRow();
         setupGrid();
 
         refreshGrid();
@@ -59,7 +63,11 @@ public class MainView extends VerticalLayout {
         add(toggleButton);
     }
 
-    private void setupUpload() {
+    private void setupExportAndUploadRow() {
+        String defaultExportPath = System.getProperty("user.home") + "/Downloads/media-stack-export.db";
+        final String[] exportPath = { defaultExportPath };
+
+        // Upload
         MemoryBuffer buffer = new MemoryBuffer();
         Director mediaDirector = new Director();
         Upload upload = new Upload(buffer);
@@ -91,14 +99,60 @@ public class MainView extends VerticalLayout {
                 Notification.show("Upload failed: ");
             }
         });
-        add(upload);
-    }
 
-    private String getFileType(String mimeType) {
-        if (mimeType.startsWith("image/")) return "IMAGE";
-        if (mimeType.startsWith("video/")) return "VIDEO";
-        if (mimeType.equals("application/pdf")) return "PDF";
-        throw new IllegalArgumentException("Unsupported file type: " + mimeType);
+        // Export Button
+        Button exportButton = new Button("Export Database", event -> {
+            boolean success = mediaFileStorageService.exportAllMediaFilesToFolder(exportPath[0]);
+            if (success) {
+                Notification.show("Database exported to: " + exportPath[0]);
+            } else {
+                Notification.show("Export failed");
+            }
+        });
+        exportButton.setWidth("180px");
+
+        // Change Path Button and TextField
+        Button changePathButton = new Button("Change Path ");
+        changePathButton.setWidth("180px");
+
+        TextField pathField = new TextField();
+        pathField.setWidth("400px");
+        pathField.setValue(exportPath[0]);
+        pathField.setVisible(false);
+
+        changePathButton.addClickListener(e -> {
+            pathField.setValue(exportPath[0]);
+            changePathButton.setVisible(false);
+            pathField.setVisible(true);
+            pathField.focus();
+        });
+
+        pathField.addBlurListener(e -> {
+            exportPath[0] = pathField.getValue();
+            changePathButton.setText("Change Path");
+            pathField.setVisible(false);
+            changePathButton.setVisible(true);
+        });
+        pathField.addKeyPressListener(key -> {
+            if ("Enter".equals(key.getKey())) {
+                exportPath[0] = pathField.getValue();
+                changePathButton.setText("Change Path");
+                pathField.setVisible(false);
+                changePathButton.setVisible(true);
+            }
+        });
+
+        // vertical layout for the buttons
+        VerticalLayout buttonColumn = new VerticalLayout(changePathButton, pathField, exportButton);
+        buttonColumn.setPadding(false);
+        buttonColumn.setSpacing(true);
+        buttonColumn.setAlignItems(FlexComponent.Alignment.STRETCH);
+
+        // horizontal layout and center its content
+        HorizontalLayout row = new HorizontalLayout(upload, buttonColumn);
+        row.setWidthFull();
+        row.setAlignItems(FlexComponent.Alignment.CENTER);
+        add(row);
     }
 
     private void setupGrid() {

@@ -1,7 +1,7 @@
 package com.MediaStack.MediaStack.service;
 
 import java.time.LocalDateTime;
-import java.util.Collection;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -9,7 +9,6 @@ import org.springframework.stereotype.Service;
 import com.MediaStack.MediaStack.repository.MediaFileRepository;
 import com.MediaStack.MediaStack.entity.model.director.Director;
 import com.MediaStack.MediaStack.entity.model.mediaFile.MediaFileModel;
-import com.MediaStack.MediaStack.entity.model.mediaFile.MediaFileTypeEnum;
 
 @Service
 public class MediaFileService {
@@ -39,7 +38,7 @@ public class MediaFileService {
                 .orElseThrow(() -> new IllegalArgumentException("Media file not found with id: " + id));
     }
 
-    public Collection<MediaFileModel> getAllMediaFiles() {
+    public List<MediaFileModel> getAllMediaFiles() {
         return mediaFileRepository.findAll();
     }
 

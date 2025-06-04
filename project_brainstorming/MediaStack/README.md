@@ -7,6 +7,17 @@ Data is managed locally using an SQLite database, while the actual files are sto
 
 ---
 
+## 📚 Overview
+
+- [Features](#-features)
+- [Local Setup](#-local-setup)
+- [Tech Stack](#-tech-stack)
+- [Project Structure](#-project-structure-v-01)
+- [Prospect](#-prospect)
+- [Screenshots](#-screenshots)
+
+---
+
 ## 🚀 Features
 
 - 🔼 Upload images, videos, and PDF files
@@ -16,6 +27,28 @@ Data is managed locally using an SQLite database, while the actual files are sto
 - 🎬 Play videos
 - 🗑️ Delete files via the UI
 - 🏷️ Store metadata such as filename, type, and upload timestamp
+
+Here’s how to update your `README.md` to reflect the Gradle-based build and installer process with configurable installer types:
+
+---
+
+## 🧪 Local Setup
+
+### Prerequisites
+
+- Java 23+
+- Gradle (or use the included Gradle Wrapper: `./gradlew`)
+- (Optional: IDE like IntelliJ IDEA)
+
+### ▶Run the project
+
+```bash
+git clone https://github.com/your-user/mediastack.git
+cd mediastack
+./gradlew bootRun
+```
+
+The application will be available at [http://localhost:8080](http://localhost:8080).
 
 ---
 
@@ -106,13 +139,13 @@ I wanna mention that I try for education purposes to code with the test driven d
 
 #### Features
 
-- [ ] Upload images, videos, and PDF files
-- [ ] Overview of all stored media
+- [x] Upload images, videos, and PDF files
+- [x] Overview of all stored media
 - [ ] Display images directly in the browser
 - [ ] Embed PDF files in the browser
 - [ ] Play videos
-- [ ] Delete files via the UI
-- [ ]️ Store metadata such as filename, type, and upload timestamp
+- [x] Delete files via the UI
+- [x]️ Store metadata such as filename, type, and upload timestamp
 
 #### Expected timeframe
 
@@ -162,9 +195,19 @@ Total timespan: 2025-05-29 -> 2023-06-12 (two Weeks)
         - setupGrid() sets up the grid to display media files
         - refreshGrid() refreshes the grid to show the latest media files
     - Add tests for MainView with JUnit, but afterwards what was a mistake because of my TDD rule
-5. 02.06 - Implement file upload, deletion functionality (idk i think there a no tests possible form my view now), Implement file storage in the local file system (1h)
+5. 02.06 - Implement file upload, deletion functionality (idk i think there a no tests possible form my view now), Implement file storage in the local file system (1h / 1h 30min)
+    - Already implemented the file upload and deletion functionality in the MainView, so I just need to add the file storage in the local file system
+    - Add tests for MediaFileStorageService to ensure file storage works correctly
+    - Add a MediaFileStorageService to handle file storage in the local file system, and add every .db to the .gitignore file
+    - Put MediaDatabase from a temporary cache to a SQLite database in my project root
+      - jdbc:sqlite:memory:myDb?cache=shared -> jdbc:sqlite:media-stack.db, and ddl-auto is set to update
+    - Make a final MediaFileService Attribute for MediaFileStorageService to handle file storage
 6. 03.06 - Bug fixing and code cleanup, looking for potential patterns (1h)
+    - Total not needed at this point because everything works as expected
+      (Note: Consider improve the user experience with better error handling and design)
+    - No design patterns used at this point, but I think the Builder and Director pattern is a good choice for the MediaFileModel
 7. 04.06 - A short User Manual / Documentation and final touches (30 min)
+    - Addjust the README.md file with a short user manual and documentation
 
 **Week 2:**
 
@@ -180,7 +223,7 @@ I'm planning to extend the project with the following features:
 - Date filtering for uploads
 - Folder structure for organizing media
 - Tagging system for categorizing media
-- Export functionality from the DB to a folder structure
+- ✅ Export functionality from the DB to a folder structure
 
 ---
 
