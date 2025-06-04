@@ -195,19 +195,23 @@ Total timespan: 2025-05-29 -> 2023-06-12 (two Weeks)
         - setupGrid() sets up the grid to display media files
         - refreshGrid() refreshes the grid to show the latest media files
     - Add tests for MainView with JUnit, but afterwards what was a mistake because of my TDD rule
-5. 02.06 - Implement file upload, deletion functionality (idk i think there a no tests possible form my view now), Implement file storage in the local file system (1h / 1h 30min)
-    - Already implemented the file upload and deletion functionality in the MainView, so I just need to add the file storage in the local file system
-    - Add tests for MediaFileStorageService to ensure file storage works correctly
-    - Add a MediaFileStorageService to handle file storage in the local file system, and add every .db to the .gitignore file
-    - Put MediaDatabase from a temporary cache to a SQLite database in my project root
-      - jdbc:sqlite:memory:myDb?cache=shared -> jdbc:sqlite:media-stack.db, and ddl-auto is set to update
-    - Make a final MediaFileService Attribute for MediaFileStorageService to handle file storage
-6. 03.06 - Bug fixing and code cleanup, looking for potential patterns (1h)
-    - Total not needed at this point because everything works as expected
-      (Note: Consider improve the user experience with better error handling and design)
-    - No design patterns used at this point, but I think the Builder and Director pattern is a good choice for the MediaFileModel
+5. 02.06 - Implement file upload, deletion functionality (idk i think there a no tests possible form my view now), Implement file storage in the local file system (1h)
+    - Didnt happen
+7. 03.06 - Bug fixing and code cleanup, looking for potential patterns (1h)
+    - Didnt happen
 7. 04.06 - A short User Manual / Documentation and final touches (30 min)
+    - Didnt happen
+- 04.6 - Adjust Readme.md, Add a file storage service, No db caching anymore, work with TDD (2h)
+   - Already implemented the file upload and deletion functionality in the MainView, so I just need to add the file storage in the local file system
+   - Add tests for MediaFileStorageService to ensure file storage works correctly
+   - Add a MediaFileStorageService to handle file storage in the local file system, and add every .db to the .gitignore file
+   - Put MediaDatabase from a temporary cache to a SQLite database in my project root
+      - jdbc:sqlite:memory:myDb?cache=shared -> jdbc:sqlite:media-stack.db, and ddl-auto is set to update
+   - Make a final MediaFileService Attribute for MediaFileStorageService to handle file storage
     - Addjust the README.md file with a short user manual and documentation
+    - Total not needed at this point because everything works as expected
+      - (Note: Consider improve the user experience with better error handling and design)
+   - No design patterns used at this point, but I think the Builder and Director pattern is a good choice for the MediaFileModel
 
 **Week 2:**
 
